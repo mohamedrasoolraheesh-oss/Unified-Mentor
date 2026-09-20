@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+from pathlib import Path
 
 st.set_page_config(
     page_title="E-Commerce Sales Dashboard",
@@ -12,8 +13,12 @@ st.title("🛒 E-Commerce Sales Analytics")
 st.caption("Data Cleaning + Visualization Pipeline")
 
 # Load dataset
+BASE_DIR = Path(__file__).resolve().parent
+
 try:
-    df = pd.read_csv("cleaned_ecommerce_sales.csv")
+    df = pd.read_csv(
+        BASE_DIR / "cleaned_ecommerce_sales.csv"
+    )
 except Exception as e:
     st.error(f"Could not load the dataset: {e}")
     st.stop()
